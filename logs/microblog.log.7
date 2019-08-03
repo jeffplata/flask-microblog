@@ -1,4 +1,4 @@
-2019-07-27 18:11:43,800 ERROR: Exception on /edit_profile [GET] [in c:\projects\microblog\venv\lib\site-packages\flask\app.py:1891]
+2019-07-27 18:26:10,507 ERROR: Exception on /edit_profile [GET] [in c:\projects\microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "c:\projects\microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -16,55 +16,69 @@ Traceback (most recent call last):
     return func(*args, **kwargs)
   File "C:\projects\microblog\app\routes.py", line 99, in edit_profile
     form=form)
-  File "c:\projects\microblog\venv\lib\site-packages\flask\templating.py", line 140, in render_template
-    ctx.app,
-  File "c:\projects\microblog\venv\lib\site-packages\flask\templating.py", line 120, in _render
-    rv = template.render(context)
-  File "c:\projects\microblog\venv\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "c:\projects\microblog\venv\lib\site-packages\jinja2\environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
+  File "c:\projects\microblog\venv\lib\site-packages\flask\templating.py", line 138, in render_template
+    ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\loaders.py", line 125, in load
+    code = environment.compile(source, name, filename)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\environment.py", line 591, in compile
+    self.handle_exception(exc_info, source_hint=source_hint)
   File "c:\projects\microblog\venv\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
   File "c:\projects\microblog\venv\lib\site-packages\jinja2\_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "C:\projects\microblog\app\templates\edit_profile.html", line 1, in top-level template code
-    {% extends "base.html" %}
-  File "C:\projects\microblog\app\templates\base.html", line 30, in top-level template code
-    {% block content %}{% endblock %}
-  File "C:\projects\microblog\app\templates\edit_profile.html", line 6, in block "content"
-    {{ form.hidden_tag() }}
-  File "c:\projects\microblog\venv\lib\site-packages\flask_wtf\form.py", line 135, in hidden_tag
-    u'\n'.join(text_type(f) for f in hidden_fields(fields or self))
-  File "c:\projects\microblog\venv\lib\site-packages\flask_wtf\form.py", line 135, in <genexpr>
-    u'\n'.join(text_type(f) for f in hidden_fields(fields or self))
-  File "c:\projects\microblog\venv\lib\site-packages\flask_wtf\form.py", line 125, in hidden_fields
-    for f in fields:
-  File "c:\projects\microblog\venv\lib\site-packages\wtforms\form.py", line 57, in __iter__
-    return iter(itervalues(self._fields))
-AttributeError: 'EditProfileForm' object has no attribute '_fields'
-2019-07-27 18:13:23,714 INFO: Microblog startup [in C:\projects\microblog\app\__init__.py:48]
-2019-07-27 18:13:36,386 ERROR: Exception on /edit_profile [GET] [in c:\projects\microblog\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "c:\projects\microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\projects\microblog\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\projects\microblog\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "c:\projects\microblog\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "c:\projects\microblog\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\projects\microblog\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\projects\microblog\venv\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\projects\microblog\app\routes.py", line 89, in edit_profile
-    form = EditProfileForm()
-  File "c:\projects\microblog\venv\lib\site-packages\wtforms\form.py", line 212, in __call__
-    return type.__call__(cls, *args, **kwargs)
-TypeError: __init__() missing 1 required positional argument: 'original_username'
-2019-07-27 18:14:42,560 INFO: Microblog startup [in C:\projects\microblog\app\__init__.py:48]
-2019-07-27 18:16:17,699 INFO: Microblog startup [in C:\projects\microblog\app\__init__.py:48]
-2019-07-27 18:25:50,972 INFO: Microblog startup [in C:\projects\microblog\app\__init__.py:48]
+  File "C:\projects\microblog\app\templates\edit_profile.html", line 16, in template
+    {{ form.about_me(cols=50, rows=4, white-space=pre-wrap) }}<br>
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\environment.py", line 497, in _parse
+    return Parser(self, source, name, encode_filename(filename)).parse()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 901, in parse
+    result = nodes.Template(self.subparse(), lineno=1)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 883, in subparse
+    rv = self.parse_statement()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 130, in parse_statement
+    return getattr(self, 'parse_' + self.stream.current.value)()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 268, in parse_block
+    node.body = self.parse_statements(('name:endblock',), drop_needle=True)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 165, in parse_statements
+    result = self.subparse(end_tokens)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 875, in subparse
+    add_data(self.parse_tuple(with_condexpr=True))
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 620, in parse_tuple
+    args.append(parse())
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 432, in parse_expression
+    return self.parse_condexpr()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 437, in parse_condexpr
+    expr1 = self.parse_or()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 450, in parse_or
+    left = self.parse_and()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 459, in parse_and
+    left = self.parse_not()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 470, in parse_not
+    return self.parse_compare()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 474, in parse_compare
+    expr = self.parse_math1()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 496, in parse_math1
+    left = self.parse_concat()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 507, in parse_concat
+    args = [self.parse_math2()]
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 517, in parse_math2
+    left = self.parse_pow()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 528, in parse_pow
+    left = self.parse_unary()
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 547, in parse_unary
+    node = self.parse_postfix(node)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 676, in parse_postfix
+    node = self.parse_call(node)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 789, in parse_call
+    ensure(not kwargs)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 763, in ensure
+    token.lineno)
+  File "c:\projects\microblog\venv\lib\site-packages\jinja2\parser.py", line 59, in fail
+    raise exc(msg, lineno, self.name, self.filename)
+jinja2.exceptions.TemplateSyntaxError: invalid syntax for function call expression
+2019-07-27 18:28:13,761 INFO: Microblog startup [in C:\projects\microblog\app\__init__.py:48]

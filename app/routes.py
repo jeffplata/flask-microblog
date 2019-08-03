@@ -130,7 +130,7 @@ def unfollow(username):
         flash('You cannot unfollow yourself!')
         return redirect(url_for('user', username=username))
     current_user.unfollow(user)
-    d.session.commit()
+    db.session.commit()
     flash('You are not following {}.'.format(username))
     return redirect(url_for('user', username=username))
     
